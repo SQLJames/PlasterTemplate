@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest schemaVersion="1.0" 
+  xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>ModuleTemplate</name>
+    <version>0.1.0</version>
+    <title>ModuleTemplate</title>
+    <description>Used to standardize module creation on the team.</description>
+    <author>James Rhoat</author>
+    <id>abe7d8b0-2b42-4db3-8bfc-f4a61487e29c</id>
+    <tags></tags>
+  </metadata>
+  <parameters>
+    <parameter name="ModuleName" type="text" prompt="Name of your module" default="${PLASTER_DestinationName}"/>
+    <parameter name="ModuleDesc" type="text" prompt="Brief description on this module" default="${PLASTER_ModuleName}"/>
+    <parameter name="FullName" type="text" prompt="Module author's' name" default="${PLASTER_PARAM_GitHubUserName}"/>
+    <parameter name="ModuleCompanyName" type="text" prompt="Company name" default='Modernizing Medicine' />
+    <parameter name="PowershellVersion" type="text" prompt="Minimum Powershell Version" default='3.0' />
+  </parameters>
+  <content>
+    <message>      Creating folder structure    </message>
+    <file source='' destination='docs\images'/>
+    <file source='' destination='tests'/>
+    <file source='' destination='Public'/>
+    <file source='' destination='Private'/>
+    <message>      Deploying files    </message>
+    <templateFile source='Tests\moduleConfiguration.tests.ps1' destination='Tests\${PLASTER_PARAM_ModuleName}Configuration.tests.ps1'/>
+    <templateFile source='Tests\Template.tests.ps1' destination='Tests\Template.tests.ps1'/>  
+    <file source='Contributing.md' destination=''/>
+    <file source='module.psm1' destination='${PLASTER_PARAM_ModuleName}.psm1'/>
+    <templateFile source='module.psd1' destination='${PLASTER_PARAM_ModuleName}.psd1'/>  
+    <templateFile source='Module.Format.ps1xml' destination='${PLASTER_PARAM_ModuleName}.Format.ps1xml'/>  
+    <file source='.gitignore' destination=''/>
+    <templateFile source='readme.md' destination=''/>
+  </content>
+</plasterManifest>
